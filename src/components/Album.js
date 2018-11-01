@@ -13,7 +13,8 @@ class Album extends Component {
         this.state = {
             album: album,
             currentSong: album.songs[0],
-            isPlaying: false
+            isPlaying: false,
+            isHovered: false
         };
 
         this.audioElement = document.createElement('audio');
@@ -45,6 +46,16 @@ class Album extends Component {
         }
     }
 
+    handleHover(index) {
+       if (isHovered === currentSong) {
+           return <span className="ion-pause"></span>
+       } else if (isHovered) {
+           return <span className="ion-play"></span>
+       } else {
+           return <span>{index += 1}</span>
+       }
+    }
+
     render() {
         return (
             <section className="album">
@@ -65,10 +76,10 @@ class Album extends Component {
                     <tbody>
                       {
                         this.state.album.songs.map( (song, index) =>
-                            <tr className="song" key="index" onClick={() => this.handleSongClick(song)} >
-                                <td /*id="song-number-column"*/>{index += 1}</td>
-                                <td /*id="song-title-column"*/>{song.title}</td>
-                                <td /*id="song-duration-column"*/>{song.duration}</td>
+                            <tr className="song" key="index" onClick={() => this.handleSongClick(song)} onMouseEnter={() => this.setState({ isHovered: index}) } onMouseLeave={() => this.setState({ isHovered: false}) }>
+                                <td>{handleHover(index)}</td>
+                                <td>{song.title}</td>
+                                <td>{song.duration}</td>
                             </tr>
                         )
                       }
