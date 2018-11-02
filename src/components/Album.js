@@ -47,10 +47,10 @@ class Album extends Component {
     }
 
     handleHover(index) {
-       if (this.state.isHovered === this.state.currentSong) {
-           return <button type="button" className="ion-pause"><ion-icon name="pause"></ion-icon></button>
-       } else if (this.state.isHovered) {
+       if (this.state.isHovered === index) {
            return <button type="button" className="ion-play"><ion-icon name="play"></ion-icon></button>
+       } else if (this.state.currentSong && this.state.isHovered === index) {
+           return <button type="button" className="ion-pause"><ion-icon name="pause"></ion-icon></button>
        } else {
            return <span>{index += 1}</span>
        }
