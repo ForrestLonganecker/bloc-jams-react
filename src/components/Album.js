@@ -47,14 +47,18 @@ class Album extends Component {
     }
 
     handleHover(index) {
-       if (this.state.isHovered === index) {
-           return <button type="button" className="ion-play"><ion-icon name="play"></ion-icon></button>
-       } else if (this.state.currentSong && this.state.isHovered === index) {
+        this.setState({ isHovered: index })
+    }
+
+     /*  if (this.state.isHovered === index) {
+        //console.log(this.state.isHovered === index);   
+        return <button type="button" className="ion-play"><ion-icon name="play"></ion-icon></button>
+       } else if (this.state.isHovered === index && this.state.isPlaying) {
            return <button type="button" className="ion-pause"><ion-icon name="pause"></ion-icon></button>
        } else {
            return <span>{index += 1}</span>
        }
-    }
+    }  */
 
     render() {
         return (
@@ -77,7 +81,13 @@ class Album extends Component {
                       {
                         this.state.album.songs.map( (song, index) =>
                             <tr className="song" key="index" onClick={() => this.handleSongClick(song)} /*onMouseEnter={() => this.setState({ isHovered: index }) } onMouseLeave={() => this.setState({ isHovered: false}) }*/>
-                                <td onMouseEnter={() => this.setState({ isHovered: index }) } onMouseLeave={() => this.setState({ isHovered: false}) } >{this.handleHover(index)}</td>
+                                <td onMouseEnter={() => this.handleHover(index) } onMouseLeave={() => this.setState({ isHovered: false}) } > { 
+                                    isHovered && !isPlaying ? <button type="button" className="ion-play"><ion-icon name="play"></ion-icon></button>
+                                    : isHovered && isPlaying ? <button type="button" className="ion-pause"><ion-icon name="pause"></ion-icon></button>
+                                    : !isHovered && isPlaying ? <button type="button" className="ion-pause"><ion-icon name="pause"></ion-icon></button>
+                                    : index += 1
+                                    } 
+                                </td>
                                 <td>{song.title}</td>
                                 <td>{song.duration}</td>
                             </tr>
