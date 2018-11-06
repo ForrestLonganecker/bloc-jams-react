@@ -128,7 +128,7 @@ class Album extends Component {
                     isPlaying={this.state.isPlaying}
                     currentSong={this.state.currentSong}
                     handleSongClick={() => this.handleSongClick(this.state.currentSong)}
-                    handdlePrevClick={() => this.handlePrevClick()}
+                    handlePrevClick={() => this.handlePrevClick()}
                 />
             </section>
         );
