@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import albumData from './../../data/albums';
-import PlayerBar from './PlayerBar';
+import PlayerBar from './../PlayerBar/PlayerBar';
+import './Album.css';
 
 class Album extends Component {
     constructor(props) {
@@ -118,7 +119,7 @@ class Album extends Component {
     componentWillUnmount() {
         this.audioElement.src = null;
         this.audioElement.removeEventListener('timeupdate', this.eventListeners.timeupdate);
-        this.audioElement.removeEventListener('durationchange', this.evenListeners.durationchange);
+        this.audioElement.removeEventListener('durationchange', this.eventListeners.durationchange);
     }
 
     handleTimeChange(e) {
