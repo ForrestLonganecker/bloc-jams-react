@@ -128,11 +128,27 @@ class Album extends Component {
         this.setState({ currentTime: newTime });
     }
 
-    formatTime(timeInSeconds) {
+    formatTime(inputTime) {
+        var minutes = Math.floor(inputTime / 60);
+        var seconds = Math.floor(inputTime % 60);
+
+        if (minutes > 0) {
+            return minutes + ":" + (seconds < 10 ? 0 : seconds);
+        } else {
+            return "0:" + (seconds < 10 ? 0 : seconds);
+        }
+
     }
 
+    /*
+    updateTime() {
+        this.setState({ currentTime: this.formatTime(this.state.currentTime) });
+        this.setState({ duration: this.formatTime(this.state.duration) });
+    }
+    */
+
     handleVolumeChange(e) {
-        const newVolume = this.audioElement.volume * e.target.value;
+        const newVolume = e.target.value;
         this.audioElement.volume = newVolume;
         this.setState({ volume: newVolume });
     }
@@ -162,7 +178,7 @@ class Album extends Component {
                                     { this.displayButton(song, index) } 
                                 </td>
                                 <td>{song.title}</td>
-                                <td>{song.duration}</td>
+                                <td>{this.formatTime(song.duration)}</td>
                             </tr>
                         )
                       }
@@ -179,6 +195,7 @@ class Album extends Component {
                     handleNextClick={() => this.handleNextClick()}
                     handleTimeChange={(e) => this.handleTimeChange(e)}
                     handleVolumeChange={(e) => this.handleVolumeChange(e)}
+                    formatTime={(inputTime) => this.formatTime(inputTime)}
                 />
             </section>
         );
