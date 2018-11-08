@@ -4,6 +4,7 @@ import './App.css';
 import Landing from './components/Landing/Landing';
 import Library from './components/Library/Library';
 import Album from './components/Album/Album';
+import './Album.css'
 
 class App extends Component {
   render() {
