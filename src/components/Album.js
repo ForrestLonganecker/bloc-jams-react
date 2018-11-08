@@ -134,18 +134,12 @@ class Album extends Component {
 
         if (minutes > 0) {
             return minutes + ":" + (seconds < 10 ? 0 : seconds);
+        } else if (seconds < 10 && seconds > 0) {
+            return "0:" + "0" + seconds;
         } else {
-            return "0:" + (seconds < 10 ? 0 : seconds);
+            return "-:--";
         }
-
     }
-
-    /*
-    updateTime() {
-        this.setState({ currentTime: this.formatTime(this.state.currentTime) });
-        this.setState({ duration: this.formatTime(this.state.duration) });
-    }
-    */
 
     handleVolumeChange(e) {
         const newVolume = e.target.value;
