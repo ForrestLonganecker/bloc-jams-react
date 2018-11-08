@@ -109,21 +109,17 @@ class Album extends Component {
             },
             durationchange: e => {
                 this.setState({ duration: this.audioElement.duration });
-            },
-            volumeupdate: e => {
-                this.setState({ volume: this.audioElement.volume });
             }
         };
+
         this.audioElement.addEventListener('timeupdate', this.eventListeners.timeupdate);
         this.audioElement.addEventListener('durationchange', this.eventListeners.durationchange);
-        this.audioElement.addEventListener('volumechange', this.eventListeners.volumeupdate);
     }
 
     componentWillUnmount() {
         this.audioElement.src = null;
         this.audioElement.removeEventListener('timeupdate', this.eventListeners.timeupdate);
         this.audioElement.removeEventListener('durationchange', this.evenListeners.durationchange);
-        this.audioElement.removeEventListener('volumechange', this.evenListeners.volumeupdate);
     }
 
     handleTimeChange(e) {
@@ -133,7 +129,6 @@ class Album extends Component {
     }
 
     formatTime(timeInSeconds) {
-
     }
 
     handleVolumeChange(e) {
