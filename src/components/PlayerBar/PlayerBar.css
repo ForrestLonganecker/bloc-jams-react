@@ -1,0 +1,28 @@
+#buttons {
+    display: flex;
+    justify-content: space-around;
+
+}
+
+#time-control {
+    display: flex;
+    flex-direction: column;
+}
+
+#volume-control {
+    display: flex;
+    flex-direction: row;
+}
+
+.player-bar {
+    display: flex;
+    flex-direction: column;
+}
+
+.ion-volume-low {
+    margin-right: 10px;
+}
+
+.ion-volume-high {
+    margin-left: 10px;
+}

@@ -1,0 +1,22 @@
+.library {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.App-Link {
+    padding: 0px 15px 15px 0px;
+    display: flex;
+    flex-direction: row;
+}
+
+img {
+    padding-left: 10px;
+    height: 40vmin;
+}
+
+.album-info {
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

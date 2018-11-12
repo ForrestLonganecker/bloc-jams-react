@@ -43,6 +43,10 @@ class Album extends Component {
     }
 
     handleSongClick(song, index) {
+        if (this.state.currentSong == null) {
+            song = this.state.album.songs[0];
+            index = 0;
+        }
         const isSameSong = this.state.currentSongIndex === index;
         if (this.state.isPlaying && isSameSong) {
             this.pause();
@@ -129,17 +133,22 @@ class Album extends Component {
     }
 
     formatTime(inputTime) {
+        if (inputTime <= 0) {
+            return '-:--';
+        }
+
         var minutes = Math.floor(inputTime / 60);
         var seconds = Math.floor(inputTime % 60);
 
-        if (minutes > 0) {
-            return minutes + ":" + (seconds < 10 ? 0 : seconds);
-        } else if (seconds < 10 && seconds > 0) {
-            return "0:" + "0" + seconds;
-        } else {
-            return "-:--";
+        var secondsString = seconds;
+
+        if (seconds < 10) {
+            secondsString = '0' + seconds;
         }
+
+        return minutes + ':' + secondsString;
     }
+
 
     handleVolumeChange(e) {
         const newVolume = e.target.value;
@@ -184,7 +193,7 @@ class Album extends Component {
                     currentTime={this.audioElement.currentTime}
                     duration={this.audioElement.duration}
                     volume={this.audioElement.volume}
-                    handleSongClick={() => this.handleSongClick(this.state.currentSong)}
+                    handleSongClick={() => this.handleSongClick(this.state.currentSong, this.state.currentSongIndex)}
                     handlePrevClick={() => this.handlePrevClick()}
                     handleNextClick={() => this.handleNextClick()}
                     handleTimeChange={(e) => this.handleTimeChange(e)}
